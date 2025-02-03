@@ -1,1 +1,104 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Vista Kanban para evaluaciones -->
+        <record id="view_evaluacion_kanban" model="ir.ui.view">
+            <field name="name">evaluacion.desempeno.kanban</field>
+            <field name="model">evaluacion.desempeno</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="estado"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click">
+                                <div class="oe_kanban_card">
+                                    <div class="oe_kanban_header">
+                                        <field name="titulo"/>
+                                    </div>
+                                    <div class="oe_kanban_content">
+                                        <div class="oe_kanban_left">
+                                            <field name="nombre"/>
+                                            <field name="fecha"/>
+                                        </div>
+                                        <div class="oe_kanban_right">
+                                            <field name="estado"/>
+                                            <field name="puntuacion" widget="priority"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <!-- Vista formulario para evaluaciones -->
+        <record id="view_evaluacion_form" model="ir.ui.view">
+            <field name="name">evaluacion.desempeno.form</field>
+            <field name="model">evaluacion.desempeno</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="nombre"/>
+                                <field name="titulo"/>
+                                <field name="fecha"/>
+                            </group>
+                            <group>
+                                <field name="estado"/>
+                                <field name="puntuacion"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Comentarios">
+                                <field name="comentarios"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Vista lista -->
+        <record id="view_evaluacion_tree" model="ir.ui.view">
+            <field name="name">evaluacion.desempeno.tree</field>
+            <field name="model">evaluacion.desempeno</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="nombre"/>
+                    <field name="titulo"/>
+                    <field name="fecha"/>
+                    <field name="estado"/>
+                    <field name="puntuacion"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Acción de ventana -->
+        <record id="action_evaluacion_desempeno" model="ir.actions.act_window">
+            <field name="name">Evaluaciones de Desempeño</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">evaluacion.desempeno</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Crea tu primera evaluación de desempeño
+                </p>
+            </field>
+        </record>
+
+        <!-- Elementos del menú -->
+        <menuitem id="menu_evaluacion_root"
+                  name="Evaluación de Desempeño"
+                  sequence="10"/>
+
+        <menuitem id="menu_evaluacion_main"
+                  name="Evaluaciones"
+                  parent="menu_evaluacion_root"
+                  action="action_evaluacion_desempeno"
+                  sequence="1"/>
+
+    </data>
+</odoo>

@@ -2,11 +2,11 @@
     "name": "Evaluación de desempeño",
     "version": "1.0",
     "summary": "Módulo para gestionar el desempeño de los empleados",
-    "category": "Productivity",
+    "category": "Human Resources",
     "author": "Emilio Neva",
     "website": "https://tuweb.com",
     "license": "LGPL-3",
-    "depends": ["base", "mail"],
+    "depends": ["base", "mail", "hr"],
     "icon": "/evaluacion_desempeno/static/description/icon53.jpg",
     "data": [
         "views/evaluacion_desempeno_views.xml",
